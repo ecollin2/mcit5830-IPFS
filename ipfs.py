@@ -33,18 +33,18 @@ def get_from_ipfs(cid,content_type="json"):
 	ipfs_gateway_url = f"https://gateway.pinata.cloud/ipfs/{cid}"
 	
 	try:
-    response = requests.get(ipfs_gateway_url)
+    		response = requests.get(ipfs_gateway_url)
 
-    if response.ok:
-      if content_type == "json":
-        data = response.json()  
-      else:
-        data = response.text 
-    else:
-      raise Exception(f"Failed to get data: {response.text}")
+    		if response.ok:
+      			if content_type == "json":
+        			data = response.json()  
+      			else:
+        			data = response.text 
+    		else:
+      			raise Exception(f"Failed to get data: {response.text}")
 
 	except requests.exceptions.RequestException as e:
-    raise Exception(f"Error: {e}")
+    		raise Exception(f"Error: {e}")
 
 	assert isinstance(data,dict), f"get_from_ipfs should return a dict"
 	return data
